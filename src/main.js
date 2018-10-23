@@ -2,6 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from './store/index'
 import App from './App'
 
 // router setup
@@ -40,6 +41,7 @@ Object.defineProperty(Vue.prototype, '$Chartist', {
 new Vue({
   el: '#app',
   render: h => h(App),
+  store,
   router,
   data: {
     Chartist: Chartist
