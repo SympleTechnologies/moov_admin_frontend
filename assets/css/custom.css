@@ -27,3 +27,7 @@
 	background-color:rgba(0,0,0,0.6);
 	padding: 30px;
 }
+
+.cadhide {display: none; }
+a.dropdown-item.cadhide{ display: none; }
+li.nav-item.cadhide{ display: none; }

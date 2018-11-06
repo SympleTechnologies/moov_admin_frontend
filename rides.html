@@ -10,12 +10,19 @@
     Moov App Dashboard
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+
+  <script type="text/javascript">
+    if( localStorage.getItem('token') == null){
+      location.href = "index.html";
+    }
+  </script>
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
   <link href="assets/css/material-dashboard.css?v=2.1.0" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/custom.css" />
+
 </head>
 
 <body class="">
@@ -61,6 +68,12 @@
             <a class="nav-link" href="./rides.html">
               <i class="material-icons">person</i>
               <p>Rides</p>
+            </a>
+          </li>
+          <li class="nav-item cadhide">
+            <a class="nav-link" href="./priceshare.html">
+              <i class="material-icons">person</i>
+              <p> Percentage Handling Info </p>
             </a>
           </li>
           <li class="nav-item">
@@ -176,9 +189,10 @@
   <!--  Notifications Plugin    -->
   <script src="assets/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-  <!--<script src="assets/js/material-dashboard.min.js?v=2.1.0" type="text/javascript"></script>-->
+  <script src="assets/js/material-dashboard.min.js?v=2.1.0" type="text/javascript"></script>
   <script src="assets/js/custom.js"></script>
   <script>
+    app.inituser()
     query = location.search;
     if(query.substring(0, 6) == '?user='){
       let userid = query.substring(6);

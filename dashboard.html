@@ -10,6 +10,12 @@
     Moov Admin dashboard
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+
+  <script type="text/javascript">
+    if( localStorage.getItem('token') == null){
+      location.href = "index.html";
+    }
+  </script>
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
@@ -65,6 +71,12 @@
               <p>Rides</p>
             </a>
           </li>
+          <li class="nav-item cadhide">
+            <a class="nav-link" href="./priceshare.html">
+              <i class="material-icons">person</i>
+              <p> Percentage Handling Info </p>
+            </a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="#" onclick="app.logout()">
               <i class="material-icons">logout</i>
@@ -104,7 +116,7 @@
                     <i class="material-icons">people</i>
                   </div>
                   <p class="card-category">Total Users</p>
-                  <h3 class="card-title">490</h3>
+                  <h3 class="card-title" id="users">0</h3>
                 </div>
                 
               </div>
@@ -116,7 +128,7 @@
                     <i class="material-icons">person</i>
                   </div>
                   <p class="card-category">Drivers</p>
-                  <h3 class="card-title">344</h3>
+                  <h3 class="card-title" id="drivers">0</h3>
                 </div>
                 
               </div>
@@ -128,7 +140,7 @@
                     <i class="material-icons">info_outline</i>
                   </div>
                   <p class="card-category">Rides</p>
-                  <h3 class="card-title">75</h3>
+                  <h3 class="card-title" id="rides">0</h3>
                 </div>
                 
               </div>
@@ -140,7 +152,7 @@
                     <i class="fa fa-house"></i>
                   </div>
                   <p class="card-category">Schools</p>
-                  <h3 class="card-title">245</h3>
+                  <h3 class="card-title" id="schools">0</h3>
                 </div>
                 
               </div>
@@ -206,6 +218,8 @@
       md.initDashboardPageCharts();
 
     });
+    app.inituser()
+    app.dashboards.stats();
   </script>
 </body>
 

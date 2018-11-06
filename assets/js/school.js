@@ -6,7 +6,7 @@ const filters = {
 };
 
 const app = {
-	api: "http://localhost:8000/api/v2",
+	api: "https://themoovapp.com/api/v2",
 
 	login: async () => {
 		app.loading();
@@ -37,73 +37,6 @@ const app = {
 		}
 	},
 
-	getUsers: async () => {
-		app.loading();
-
-		try{
-			result = await fetch(`${app.api}/school/users/${filters.users.page}/${filters.users.limit}` , {
-				headers: new Headers({'Content-Type': 'application/json', 'Token': localStorage.getItem('token')}), 
-				method:'GET' })
-			resp = await result.json()
-
-			let html = ""
-			if(resp.users){
-				for(i in resp.users){
-					user = resp.users[i]
-					html += `
-						<tr>
-							<td>${user.id}</td>
-							<td>${user.firstname}</td>
-							<td>${user.lastname}</td>
-							<td>${user.email}</td>
-						</tr>
-					`
-				}
-
-/* --------- PAGINATION ------------------- find a way to abstract this for all lists */
-				let page = resp.page;
-				let totalPages = resp.totalPages;
-				if(totalPages > page){
-					if(page == 1){
-						let row = `
-							<tr>
-								<td> <button onclick="filters.users.page++; app.getUsers()">Next</button> </td>
-							</tr>
-						`;
-						html += row;
-					}
-					else{
-						let row = `
-							<tr>
-								<td> <button onclick="if(filters.users.page == 1){ return; } filters.users.page--; app.getUsers();">Prev</button> </td>
-								<td> </td>
-								<td> </td>
-								<td> <button onclick="filters.users.page++; app.getUsers()">Next</button> </td>
-							</tr>
-						`;
-						html += row;
-					}
-				}
-				else{
-					let row = `
-						<tr>
-							<td> <button onclick="if(filters.users.page == 1){ return; } filters.users.page--; app.getUsers();">Prev</button> </td>
-						</tr>
-					`;	
-					html += row;
-				}
-/* ----------- END PAGINATION ============== */
-
-				document.getElementById("usersbody").innerHTML = html;
-			}
-
-			app.finished()
-		}
-		catch(e){
-			app.finished();
-		}
-	},
-
 	logout: () => {
 		localStorage.removeItem('token');
 		location.href = localStorage.getItem('home');
@@ -118,84 +51,6 @@ const app = {
 
 	finished: () => {
 		document.getElementById('loaderdiv').remove();
-	},
-
-
-	// drivers
-
-	getDrivers: async () => {
-		let route = `${app.api}/school/drivers/${filters.drivers.page}/${filters.drivers.limit}`;
-		app.loading()
-
-		try{
-			result = await fetch(route, {
-				headers: new Headers({'Content-Type': 'application/json', 'Token': localStorage.getItem('token')}), 
-				method:'GET' })
-			resp = await result.json()
-
-			if(resp.status == 200){
-				app.renderDriversAsTable(document.getElementById('driverslist'), resp.drivers )
-			}else{
-				alert(resp.message)
-			}
-
-			app.finished();
-		}
-		catch(e){
-			app.finished()
-		}
-	},
-
-	renderDriversAsTable: ( container, drivers ) => {
-		let html = "";
-		for(i in drivers){
-			let driver = drivers[i]
-			let row = `
-				<tr>
-					<td>${driver.id}</td>
-					<td>${driver.firstname}</td>
-					<td>${driver.lastname}</td>
-					<td>${driver.approved}</td>
-				</tr>
-			`
-			html += row;
-		}
-
-		/* --------- PAGINATION ------------------- find a way to abstract this for all lists */
-				let page = resp.page;
-				let totalPages = resp.totalPages;
-				if(totalPages > page){
-					if(page == 1){
-						let row = `
-							<tr>
-								<td> <button onclick="filters.drivers.page++; app.getDrivers()">Next</button> </td>
-							</tr>
-						`;
-						html += row;
-					}
-					else{
-						let row = `
-							<tr>
-								<td> <button onclick="if(filters.drivers.page == 1){ return; } filters.drivers.page--; app.getDrivers();">Prev</button> </td>
-								<td> </td>
-								<td> </td>
-								<td> <button onclick="filters.drivers.page++; app.getDrivers()">Next</button> </td>
-							</tr>
-						`;
-						html += row;
-					}
-				}
-				else{
-					let row = `
-						<tr>
-							<td> <button onclick="if(filters.drivers.page == 1){ return; } filters.drivers.page--; app.getDrivers();">Prev</button> </td>
-						</tr>
-					`;	
-					html += row;
-				}
-/* ----------- END PAGINATION ============== */
-
-		container.innerHTML = html;
 	},
 
 
@@ -214,8 +69,9 @@ const app = {
 				$('#t4').text( resp.price_share.moov);
 				$('#t5').text( resp.price_share.driver);
 				$('#t6').text( resp.price_share.school);
+				$('#schoolname').text(resp.name);
 			}else{
-				//
+				alert(resp.message);
 			}
 
 		app.finished();
