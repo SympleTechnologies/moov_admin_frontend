@@ -65,9 +65,21 @@
             </a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="./rides.html">
+            <a class="nav-link" href="./transactions.html">
               <i class="material-icons">person</i>
-              <p>Rides</p>
+              <p>Transactions</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./singletransaction.html">
+              <i class="material-icons">person</i>
+              <p>Single Transaction</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./support.html">
+              <i class="material-icons">person</i>
+              <p>Support</p>
             </a>
           </li>
           <li class="nav-item cadhide">
@@ -114,7 +126,53 @@
       <div class="content">
         <div class="container-fluid">
             
-
+            <div class="row">
+              <div class="col-md-4">
+                <label>Filter Users</label>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" id='filterUsers' placeholder="Search Users" aria-label="Search Users" aria-describedby="basic-addon2">
+                  <div class="input-group-append">
+                    <button onclick='app.ridefilters.filterUsers()'> <i class="material-icons">search</i> </button>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <select id="selectUsers" class='form-control'>
+                    
+                  </select>
+                </div>
+                <button class='btn' onclick='app.ridefilters.filterByUser()'>Filter Transactions By User </button>
+              </div>
+              <div class="col-md-4">
+                <label>Filter Schools</label>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" id='filterSchools' placeholder="Search Schools" aria-label="Search Users" aria-describedby="basic-addon2">
+                  <div class="input-group-append">
+                    <button onclick='app.ridefilters.filterSchools()'> <i class="material-icons">search</i> </button>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <select id="selectSchools" class='form-control'>
+                    
+                  </select>
+                </div>
+                <button class='btn' onclick='app.ridefilters.filterBySchool()'>Filter Transactions By School </button>
+              </div>
+              <div class="col-md-4">
+                <label>Filter Drivers</label>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" id='filterDrivers' placeholder="Search Drivers" aria-label="Search Users" aria-describedby="basic-addon2">
+                  <div class="input-group-append">
+                    <button onclick='app.ridefilters.filterDrivers()'> <i class="material-icons">search</i> </button>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <select id="selectDrivers" class='form-control'>
+                    
+                  </select>
+                </div>
+                <button class='btn' onclick='app.ridefilters.filterByDriver()'>Filter Transactions By Driver </button>
+              </div>
+            </div>
             <div class="row">
                   <div class="card">
                 <div class="card-header card-header-primary">
@@ -190,6 +248,7 @@
   <script src="assets/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="assets/js/material-dashboard.min.js?v=2.1.0" type="text/javascript"></script>
+  <script src="assets/js/notify.min.js"></script>
   <script src="assets/js/custom.js"></script>
   <script>
     app.inituser()

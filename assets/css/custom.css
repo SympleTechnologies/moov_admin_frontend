@@ -21,7 +21,7 @@
 	height: 100%;
 	top: 0;
 	left: 0;
-	overflow: hidden;
+	overflow-y: auto;
 	z-index: 20;
 	margin: 0 auto;
 	background-color:rgba(0,0,0,0.6);

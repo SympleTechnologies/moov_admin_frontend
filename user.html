@@ -64,9 +64,21 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./rides.html">
+            <a class="nav-link" href="./transactions.html">
               <i class="material-icons">person</i>
-              <p>Rides</p>
+              <p>Transactions</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./singletransaction.html">
+              <i class="material-icons">person</i>
+              <p>Single Transaction</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./support.html">
+              <i class="material-icons">person</i>
+              <p>Support</p>
             </a>
           </li>
           <li class="nav-item cadhide">
@@ -129,7 +141,22 @@
                       </div>
                     </div>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-4">
+                  <label>Filter By School</label>
+                  <div class="input-group mb-3">
+                    <input type="text" class="form-control" id='filterSchools' placeholder="Search Schools" aria-label="Search Users" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button onclick='app.ridefilters.filterSchools()'> <i class="material-icons">search</i> </button>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <select id="selectSchools" class='form-control'>
+                      
+                    </select>
+                  </div>
+                  <button class='btn' onclick='filters.users.school = document.getElementById("selectSchools").value; app.getUsers();'>Search Users For Selected School </button>
+                </div>
+                <div class="col-md-5">
                   <button clas="btn" onclick="filters.users.a = false; filters.users.s = false; filters.users.d = false; app.getUsers()">All Users</button>
                   <button clas="btn" onclick="filters.users.a = true; filters.users.s = false; filters.users.d = false; app.getUsers()">Active Users</button>
                   <button clas="btn" onclick="filters.users.d = true; filters.users.a = false; filters.users.s = false; app.getUsers()">Deactivated Users</button>
@@ -336,6 +363,7 @@
   <script src="assets/js/plugins/chartist.min.js"></script>
   <!--  Notifications Plugin    -->
   <script src="assets/js/plugins/bootstrap-notify.js"></script>
+  <script src="assets/js/notify.min.js"></script>
 
   <script src="assets/js/custom.js"></script>
   <script>
